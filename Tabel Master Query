@@ -1,0 +1,25 @@
+SELECT
+  `Dataset_Task5.Orders`. Date AS order_date,
+  `Dataset_Task5.ProductCategory`. categoryName AS category_name,
+  `Dataset_Task5.Customers`. CustomerCity AS cust_city,
+  `Dataset_Task5.Customers`.CustomerEmail AS cust_email,
+  `Dataset_Task5.Orders`. Quantity AS order_qty,
+  `Dataset_Task5.Products`. ProdName AS product_name,
+  `Dataset_Task5.Products`. Price AS product_price,
+  (`Dataset_Task5.Orders`. Quantity*`Dataset_Task5.Products`. Price) AS total_sales
+FROM
+  `Dataset_Task5.Customers`
+INNER JOIN
+  `Dataset_Task5.Orders`
+ON
+  `Dataset_Task5.Customers`. CustomerID = `Dataset_Task5.Orders`. CustomerID
+INNER JOIN
+  `Dataset_Task5.Products`
+ON
+  `Dataset_Task5.Orders`. ProdNumber = `Dataset_Task5.Products`. ProdNumber
+INNER JOIN
+  `Dataset_Task5.ProductCategory`
+ON
+  `Dataset_Task5.Products`. Category = `Dataset_Task5.ProductCategory`. CategoryID
+ORDER BY
+  order_date;
